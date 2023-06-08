@@ -13,36 +13,5 @@ pip3 install -r odoo16/requirements.txt
 deactivate
 mkdir /opt/odoo16/odoo16/custom-addons
 exit
-sudo nano /etc/odoo16.conf
-
-[options]
-admin_passwd = YOUR_PASSWORD
-db_host = False
-db_port = False
-db_user = odoo16
-db_password = False
-addons_path = /opt/odoo16/odoo16/addons,/opt/odoo16/odoo16/custom-addons
-xmlrpc_port = 8069
-
-sudo nano /etc/systemd/system/odoo16.service
-
-[Unit]
-Description=Odoo16
-Requires=postgresql.service
-After=network.target postgresql.service
-
-[Service]
-Type=simple
-SyslogIdentifier=odoo16
-PermissionsStartOnly=true
-User=odoo16
-Group=odoo16
-ExecStart=/opt/odoo16/odoo16-venv/bin/python3 /opt/odoo16/odoo16/odoo-bin -c /etc/odoo16.conf
-StandardOutput=journal+console
-
-[Install]
-WantedBy=multi-user.target
-sudo systemctl daemon-reload
-sudo systemctl start odoo16
-sudo systemctl status odoo16
-
+sudo cp /home/tarcin/odoo-install/odoo-16.conf /etc]
+sudo cp /home/tarcin/odoo-install/odoo-16.service /etc/systemd/system
